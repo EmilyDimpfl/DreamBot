@@ -18,3 +18,5 @@ Run `dreambot.py`.
 ## Running in Docker
 
 Run `docker-compose up -d`.
+
+You'll probably also need to create `dreamers.json` in the top level of the repository.
