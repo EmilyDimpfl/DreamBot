@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dreambot:
+    container_name: 'dreambot'
+    build: services/dreambot
+    volumes:
+      - type: bind
+        source: ./dreamers.json
+        target: /home/dreambot/dreamers.json
+      - type: bind
+        source: ./.env
+        target: /home/dreambot/.env
+    restart: unless-stopped
