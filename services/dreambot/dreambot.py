@@ -35,6 +35,7 @@ patron_role_id = None
 scan_channel = None
 promotion_time = None
 scan_time = int(os.getenv('SCAN_TIME', 1440))  # default to once a day
+first_iter = True
 
 @client.event
 async def on_ready():
@@ -47,6 +48,11 @@ async def on_ready():
 
 @tasks.loop(minutes=scan_time)
 async def scan():
+    global first_iter # make sure we don't add time on the first iteration after (re)starting
+    if first_iter:
+        first_iter = False
+        return
+
     # our effectively-static settings:
     global scan_channel
     global dreamer_role_id
